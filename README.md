@@ -40,6 +40,24 @@ The application follows a strict unidirectional data flow:
    - Incorrect: Haptic feedback, shake animation, sad Buddy, error message.
    - Correct: Confetti bursts, success message scales in, options disabled, happy Buddy.
 
+## Data-Driven Quiz Engine
+
+The quiz is generated from structured JSON rather than hardcoded UI elements.
+
+Example:
+
+```json
+{
+  "question": "What colour was Pip the Robot's lost gear?",
+  "options": ["Red", "Green", "Blue", "Yellow"],
+  "answer": "Blue"
+}
+```
+
+The UI dynamically renders options from the options array, allowing the application to support any number of answer choices (3, 4, 5, or more) without requiring code changes.
+
+This approach simulates a backend-driven workflow where future questions can be delivered by an API and rendered automatically.
+
 ## Running Instructions
 
 To run this project, make sure you have the Flutter SDK installed and properly configured.
