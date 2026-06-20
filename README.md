@@ -12,6 +12,15 @@ AI Story Buddy is a delightful, kid-friendly Flutter application that combines s
 * **Animations**: Utilizes `animate_do` and `AnimatedSwitcher` for smooth, polished reveals (slide-up, fades, and scaling).
 * **Accessibility**: Includes Semantics and accessible contrast for broad usability.
 
+## Framework Choice
+
+Flutter was chosen as the framework for this application for several reasons:
+* **Single codebase for multiple platforms**: Enables seamless deployment to iOS, Android, and Web without writing platform-specific code.
+* **Smooth 60 FPS animations**: The built-in animation framework effortlessly handles UI transitions like `AnimatedSwitcher`, shake animations, and confetti bursts.
+* **Strong Riverpod state management support**: Flutter's declarative UI pairs perfectly with Riverpod, allowing for a robust, unidirectional, and highly testable state flow.
+* **Easy flutter_tts integration**: Native plugins allow for quick integration of system-level text-to-speech engines.
+* **Fast and flexible UI development**: Hot reload and a vast library of customizable widgets make it easy to craft a highly polished, kid-friendly interface quickly.
+
 ## Architecture
 
 * **Models** (`lib/models`): Define structured data schemas like `QuizModel`.
@@ -44,3 +53,16 @@ flutter run
 
 * **Quiz backend**: The quiz questions, options, and answers are simulated as JSON payloads locally to represent a typical remote backend response.
 * **Text-to-Speech Engine**: The application relies on the system's native TTS engine. A network connection may be required depending on the device's default TTS configuration (e.g., Google TTS on Android or SpeechSynthesis on Chrome).
+
+## Caching Approach
+
+* The current implementation uses the device's native TTS engine through `flutter_tts` and does not require remote audio caching.
+* If a remote provider such as ElevenLabs were used, audio would be cached locally using the story text as a cache key.
+* Cached audio would be reused to reduce latency and network usage.
+
+## AI Usage & Engineering Judgment
+
+* AI assistance was used for architecture suggestions, state management guidance, UI refinement, and error-handling review.
+* One AI suggestion that was rejected was hardcoding quiz options directly in the UI because the assignment required a truly data-driven quiz renderer.
+* One issue encountered during development was that the quiz initially appeared immediately when the application launched.
+* The issue was resolved by introducing audio state management and revealing the quiz only after narration completion callbacks.
