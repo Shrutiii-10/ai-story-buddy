@@ -60,6 +60,38 @@ flutter run
 * If a remote provider such as ElevenLabs were used, audio would be cached locally using the story text as a cache key.
 * Cached audio would be reused to reduce latency and network usage.
 
+## Performance Profiling
+
+### What Was Measured
+
+The application was profiled using Flutter DevTools to observe:
+
+* Frame rendering performance during animations
+* Widget rebuild frequency
+* Quiz reveal transitions
+* Confetti animation performance
+* Audio state transitions
+
+### Optimizations Applied
+
+Before optimization:
+
+* Larger portions of the widget tree rebuilt during state changes.
+
+After optimization:
+
+* Riverpod providers were scoped to only the widgets that required updates.
+* Audio state, quiz state, and buddy state were separated to minimize rebuilds.
+* Reusable widgets were extracted for better rendering efficiency.
+* Lightweight animations were used to avoid unnecessary frame drops.
+
+### Result
+
+* Smooth UI transitions during quiz reveal and narration flow.
+* Consistent performance during confetti animations.
+* Responsive interaction on desktop and mid-range devices.
+* No noticeable frame drops during testing.
+
 ## AI Usage & Engineering Judgment
 
 * AI assistance was used for architecture suggestions, state management guidance, UI refinement, and error-handling review.
